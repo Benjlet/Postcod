@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod", "Postcod\Postcod.csproj", "{A4B28DDC-8AB4-4435-96A9-26EAA1A88A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod", "src\Postcod\Postcod.csproj", "{A4B28DDC-8AB4-4435-96A9-26EAA1A88A06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod.Tests", "Postcod.Tests\Postcod.Tests.csproj", "{89FE1208-E4BD-4311-9CF6-DF5A8E1EEC15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod.Tests", "src\Postcod.Tests\Postcod.Tests.csproj", "{89FE1208-E4BD-4311-9CF6-DF5A8E1EEC15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod.ExampleConsole", "Postcod.ExampleConsole\Postcod.ExampleConsole.csproj", "{BF4CD05B-D15A-4CF9-AA6C-DB018BD561E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod.ExampleConsole", "src\Postcod.ExampleConsole\Postcod.ExampleConsole.csproj", "{BF4CD05B-D15A-4CF9-AA6C-DB018BD561E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod.ExampleFunction", "Postcod.ExampleFunction\Postcod.ExampleFunction.csproj", "{27FB9670-5189-402F-B306-41BF72023664}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postcod.ExampleFunction", "src\Postcod.ExampleFunction\Postcod.ExampleFunction.csproj", "{27FB9670-5189-402F-B306-41BF72023664}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
