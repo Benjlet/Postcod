@@ -7,16 +7,16 @@ using Postcod.Abstractions;
 
 namespace Postcod.ExampleFunction
 {
-    public class GetPostcodePostcod
+    public class GetPostcodeLatLong
     {
         private readonly IPostcodeLookupClient _postcodeLookupClient;
 
-        public GetPostcodePostcod(IPostcodeLookupClient postcodeLookupClient)
+        public GetPostcodeLatLong(IPostcodeLookupClient postcodeLookupClient)
         {
             _postcodeLookupClient = postcodeLookupClient;
         }
 
-        [FunctionName("GetPostcodePostcod")]
+        [FunctionName("GetPostcodeLatLong")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = "postcode/{postcode}")] HttpRequest req, string postcode)
         {
