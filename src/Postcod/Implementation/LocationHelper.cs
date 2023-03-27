@@ -32,18 +32,19 @@ namespace Postcod.Implementation
 
         public double GetDistanceBetween(Location pointOne, Location pointTwo, DistanceUnit measure)
         {
-            if (pointOne == null || pointTwo == null || pointOne.Latitude.Equals(pointTwo.Latitude) && pointOne.Longitude.Equals(pointTwo.Longitude))
+            if (pointOne?.Latitude == null || pointOne?.Longitude == null || pointTwo?.Latitude == null || pointTwo?.Longitude == null
+                || pointOne.Latitude.Equals(pointTwo.Latitude) && pointOne.Longitude.Equals(pointTwo.Longitude))
             {
                 return 0;
             }
 
-            var theta = pointOne.Longitude - pointTwo.Longitude;
+            var theta = pointOne.Longitude.Value - pointTwo.Longitude.Value;
 
             var distance =
-                Math.Sin(DegreesToRadians(pointOne.Latitude)) *
-                Math.Sin(DegreesToRadians(pointTwo.Latitude)) +
-                Math.Cos(DegreesToRadians(pointOne.Latitude)) *
-                Math.Cos(DegreesToRadians(pointTwo.Latitude)) *
+                Math.Sin(DegreesToRadians(pointOne.Latitude.Value)) *
+                Math.Sin(DegreesToRadians(pointTwo.Latitude.Value)) +
+                Math.Cos(DegreesToRadians(pointOne.Latitude.Value)) *
+                Math.Cos(DegreesToRadians(pointTwo.Latitude.Value)) *
                 Math.Cos(DegreesToRadians(theta));
 
             distance = Math.Acos(distance);

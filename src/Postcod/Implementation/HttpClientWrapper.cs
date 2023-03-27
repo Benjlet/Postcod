@@ -15,9 +15,9 @@ namespace Postcod.Implementation
 
         public async Task<string> GetAsync(string uri)
         {
-            var response = await _httpClient.GetAsync(uri);
+            var response = await _httpClient.GetAsync(uri).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
-            return await response?.Content?.ReadAsStringAsync();
+            return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
         }
     }
 }

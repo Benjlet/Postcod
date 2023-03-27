@@ -24,11 +24,10 @@ namespace Postcod.Implementation
         {
             if (!_locationHelper.IsValidUkPostcode(postcode))
             {
-                throw new PostcodeLookupValidationException(
-                    new ArgumentException("Postcode is not in a valid UK format.", nameof(postcode)));
+                throw new PostcodeLookupValidationException("Postcode is not in a valid UK format.");
             }
 
-            return await _postcodeLookupService.Search(postcode);
+            return await _postcodeLookupService.Search(postcode).ConfigureAwait(false);
         }
 
         public double GetDistanceBetween(Location pointOne, Location pointTwo, DistanceUnit measure = DistanceUnit.Miles)
