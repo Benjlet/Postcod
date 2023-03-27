@@ -1,8 +1,8 @@
 ﻿namespace Postcod.Implementation.LookupServices.PostcodesIO.Json
 {
-    internal class Root
+    internal class Error
     {
         public int status { get; set; }
-        public Result result { get; set; }
+        public string error { get; set; }
     }
 }

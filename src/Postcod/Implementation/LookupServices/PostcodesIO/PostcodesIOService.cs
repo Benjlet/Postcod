@@ -20,7 +20,7 @@ namespace Postcod.Implementation.LookupServices.PostcodesIO
 
         public async Task<Location> Search(string postcode)
         {
-            var responseJson = await GetLocationDetailsJson(postcode);
+            var responseJson = await GetLocationDetailsJson(postcode).ConfigureAwait(false);
             return HandleResponse(responseJson);
         }
 
@@ -28,7 +28,7 @@ namespace Postcod.Implementation.LookupServices.PostcodesIO
         {
             try
             {
-                return await _httpClientWrapper.GetAsync($"postcodes/{postcode}");
+                return await _httpClientWrapper.GetAsync($"postcodes/{postcode}").ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -38,20 +38,52 @@ namespace Postcod.Implementation.LookupServices.PostcodesIO
 
         private Location HandleResponse(string json)
         {
+            PostcodesIOResponse responseDetails;
+
             try
             {
-                var details = JsonConvert.DeserializeObject<Root>(json);
-
-                return new Location()
-                {
-                    Postcode = details.result.postcode,
-                    Latitude = details.result.latitude,
-                    Longitude = details.result.longitude
-                };
+                responseDetails = JsonConvert.DeserializeObject<PostcodesIOResponse>(json);
             }
             catch (Exception ex)
             {
                 throw new PostcodeLookupResponseException(ex);
+            }
+
+            if (responseDetails?.status != 200)
+            {
+                var errorMessage = TryGetError(json);
+
+                if (!string.IsNullOrWhiteSpace(errorMessage))
+                {
+                    throw new PostcodeLookupResponseException(errorMessage);
+                }
+            }
+
+            return new Location()
+            {
+                Postcode = responseDetails?.result?.postcode,
+                Latitude = responseDetails?.result?.latitude,
+                Longitude = responseDetails?.result?.longitude,
+                Country = responseDetails?.result?.country,
+                District = responseDetails?.result?.admin_district,
+                Eastings = responseDetails?.result?.eastings,
+                Northings = responseDetails?.result?.northings,
+                Parish = responseDetails?.result?.parish,
+                Region = responseDetails?.result?.region,
+                Ward = responseDetails?.result?.admin_ward
+            };
+        }
+
+        private string TryGetError(string json)
+        {
+            try
+            {
+                var errorDetails = JsonConvert.DeserializeObject<Error>(json);
+                return errorDetails?.error ?? string.Empty;
+            }
+            catch (Exception)
+            {
+                return string.Empty;
             }
         }
     }

@@ -1,6 +1,6 @@
-# Postcod v1.0.0
+# Postcod v1.1.0
 
-Treat yourself to a .NET library that saves a few quid on UK longitude/latitude lookups by using the marvellous Postcodes.IO postcode search.
+Treat yourself to a .NET library for UK postcode lookups, calling into the marvellous Postcodes.IO service.
 
 GitHub Repo:
 https://github.com/Benjlet/Postcod

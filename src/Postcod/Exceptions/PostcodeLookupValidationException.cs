@@ -16,5 +16,13 @@ namespace Postcod.Exceptions
         {
 
         }
+
+        /// <summary>
+        /// Initialises a new PostcodeLookupValidationException with the supplied inner exception.
+        /// </summary>
+        /// <param name="message">The exception message.</param>
+        public PostcodeLookupValidationException(string message) : base(message)
+        {
+        }
     }
 }
