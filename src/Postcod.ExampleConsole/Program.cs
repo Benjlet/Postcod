@@ -1,9 +1,6 @@
-﻿using Postcod.Abstractions;
-using Postcod.Models;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Threading.Tasks;
-using Postcod.Extensions;
+using Postcod.Implementation;
 
 namespace Postcod.ExampleConsole
 {
@@ -11,24 +8,12 @@ namespace Postcod.ExampleConsole
     {
         static async Task Main(string[] args)
         {
-            var serviceProvider = new ServiceCollection()
-                .AddPostcodesIOLookup(1000)
-                .BuildServiceProvider();
+            var client = new PostcodeLookupClient(timeoutMilliseconds: 100000);
 
-            var client = serviceProvider.GetService<IPostcodeLookupClient>();
+            var postcode = "SN15 1HH";
+            var location = await client.Search(postcode);
 
-            var postcodeFrom = "SN15 1HH";
-            var postcodeTo = "BA12 7PU";
-
-            var fromResult = await client.Search(postcodeFrom);
-            var toResult = await client.Search(postcodeTo);
-
-            Console.WriteLine($"{postcodeFrom}: LATITUDE={fromResult.Latitude}; LONGITUDE={fromResult.Longitude}");
-            Console.WriteLine($"{postcodeTo}: LATITUDE={toResult.Latitude}; LONGITUDE={toResult.Longitude}");
-
-            var distance = client.GetDistanceBetween(fromResult, toResult, DistanceUnit.Kilometers);
-
-            Console.WriteLine($"Distance between {postcodeFrom} and {postcodeTo}) is {distance}km");
+            Console.WriteLine($"{postcode}: LATITUDE={location.Latitude}; LONGITUDE={location.Longitude}");
             Console.ReadLine();
         }
     }

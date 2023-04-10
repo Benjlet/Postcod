@@ -1,6 +1,4 @@
-﻿using System.Dynamic;
-
-namespace Postcod.Models
+﻿namespace Postcod.Models
 {
     /// <summary>
     /// Location details.

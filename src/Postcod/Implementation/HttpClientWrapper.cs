@@ -8,9 +8,9 @@ namespace Postcod.Implementation
     {
         private readonly HttpClient _httpClient;
 
-        internal HttpClientWrapper(IHttpClientFactory clientFactory)
+        internal HttpClientWrapper(HttpClient httpClient)
         {
-            _httpClient = clientFactory.CreateClient(nameof(HttpClientWrapper));
+            _httpClient = httpClient;
         }
 
         public async Task<string> GetAsync(string uri)
