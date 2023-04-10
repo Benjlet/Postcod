@@ -1,13 +1,12 @@
-﻿using Postcod.Abstractions;
-using Postcod.Exceptions;
+﻿using Postcod.Exceptions;
 using Postcod.Implementation.Abstractions;
-using Postcod.Implementation.LookupServices.PostcodesIO.Json;
 using Postcod.Models;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
+using Postcod.Implementation.PostcodesIO.Json;
 
-namespace Postcod.Implementation.LookupServices.PostcodesIO
+namespace Postcod.Implementation.PostcodesIO
 {
     internal class PostcodesIOService : IPostcodeLookupService
     {
@@ -36,7 +35,7 @@ namespace Postcod.Implementation.LookupServices.PostcodesIO
             }
         }
 
-        private Location HandleResponse(string json)
+        private static Location HandleResponse(string json)
         {
             PostcodesIOResponse responseDetails;
 
@@ -74,7 +73,7 @@ namespace Postcod.Implementation.LookupServices.PostcodesIO
             };
         }
 
-        private string TryGetError(string json)
+        private static string TryGetError(string json)
         {
             try
             {

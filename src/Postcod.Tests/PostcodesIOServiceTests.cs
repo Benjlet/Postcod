@@ -4,10 +4,7 @@ using Moq;
 using NUnit.Framework;
 using System.Threading.Tasks;
 using System;
-using Postcod.Implementation.LookupServices.PostcodesIO;
-using System.Diagnostics.Metrics;
-using System.Runtime.InteropServices;
-using System.Net;
+using Postcod.Implementation.PostcodesIO;
 
 namespace Postcod.Tests
 {

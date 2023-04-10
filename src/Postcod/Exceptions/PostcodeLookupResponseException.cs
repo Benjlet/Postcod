@@ -23,6 +23,7 @@ namespace Postcod.Exceptions
         /// <param name="message">The exception message.</param>
         public PostcodeLookupResponseException(string message) : base(message)
         {
+
         }
     }
 }

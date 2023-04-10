@@ -1,4 +1,4 @@
-﻿namespace Postcod.Implementation.LookupServices.PostcodesIO.Json
+﻿namespace Postcod.Implementation.PostcodesIO.Json
 {
     internal class Result
     {

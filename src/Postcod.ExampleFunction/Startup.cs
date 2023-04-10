@@ -1,5 +1,4 @@
-﻿using Postcod.Extensions;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: FunctionsStartup(typeof(Postcod.ExampleFunction.Startup))]
@@ -9,7 +8,7 @@ namespace Postcod.ExampleFunction
     {
         public IServiceCollection ConfigureServices(IServiceCollection services)
         {
-            return services.AddPostcodesIOLookup();
+            return services.AddScoped<IPostcodeLookupClient, PostcodeLookupClient>();
         }
 
         public override void Configure(IFunctionsHostBuilder builder)
