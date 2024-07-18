@@ -1,5 +1,4 @@
-﻿using Postcod.Implementation;
-using Postcod.Models;
+﻿using Postcod.Models;
 using Moq;
 using NUnit.Framework;
 using Postcod.Implementation.Abstractions;
