@@ -13,14 +13,31 @@ namespace Postcod
     /// </summary>
     public class PostcodeLookupClient : IPostcodeLookupClient
     {
+        private const string PostcodeServiceUrl = "https://postcodes.io/";
+        private const long TimeoutMilliseconds = 10000;
+
         private readonly IPostcodeLookupService _postcodeLookupService;
+
+        /// <summary>
+        /// Initialises a new <see cref="PostcodeLookupClient"/> as an underlying HttpClient, with the default Postcodes IO address and timeout.
+        /// </summary>
+        public PostcodeLookupClient()
+        {
+            var httpClientWrapper = new HttpClientWrapper(new HttpClient()
+            {
+                BaseAddress = new Uri(PostcodeServiceUrl),
+                Timeout = TimeSpan.FromMilliseconds(TimeoutMilliseconds)
+            });
+
+            _postcodeLookupService = new PostcodesIOService(httpClientWrapper);
+        }
 
         /// <summary>
         /// Initialises a new <see cref="PostcodeLookupClient"/> as an underlying HttpClient, with the supplied base address and timeout.
         /// </summary>
         /// <param name="baseAddress">Base address of the PostcodesIO API</param>
         /// <param name="timeoutMilliseconds">Timeout (milliseconds).</param>
-        public PostcodeLookupClient(string baseAddress = "https://postcodes.io/", long timeoutMilliseconds = 10000)
+        public PostcodeLookupClient(string baseAddress = PostcodeServiceUrl, long timeoutMilliseconds = TimeoutMilliseconds)
         {
             var httpClientWrapper = new HttpClientWrapper(new HttpClient()
             {

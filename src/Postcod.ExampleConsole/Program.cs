@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Postcod.Implementation;
+using Postcod.Models;
 
 namespace Postcod.ExampleConsole
 {
@@ -8,12 +8,9 @@ namespace Postcod.ExampleConsole
     {
         static async Task Main(string[] args)
         {
-            var client = new PostcodeLookupClient(timeoutMilliseconds: 100000);
+            Location location = await new PostcodeLookupClient().Search("SN15 1HH");
 
-            var postcode = "SN15 1HH";
-            var location = await client.Search(postcode);
-
-            Console.WriteLine($"{postcode}: LATITUDE={location.Latitude}; LONGITUDE={location.Longitude}");
+            Console.WriteLine($"Latitude: {location.Latitude}; Longitude: {location.Longitude}");
             Console.ReadLine();
         }
     }
